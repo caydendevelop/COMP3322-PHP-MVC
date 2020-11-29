@@ -1,0 +1,36 @@
+body{
+  background-color: #efefef;
+}
+
+.backButton{
+  padding:1em;
+  border: none;
+  font-size: 16px;
+}
+
+.NQPage_1 h2{
+  text-align: center;
+  
+}
+
+.NQPageContainer_1{
+  margin: 2em auto auto auto;
+  width: 70%;
+  border: 1px solid;
+  background-color: aliceblue;
+  padding-bottom: 2em;
+  padding:2em;
+}
+
+
+.left{
+  display: inline-block;
+  
+  text-align: end;
+}
+
+.right{
+  display: inline-block;
+  
+}
+

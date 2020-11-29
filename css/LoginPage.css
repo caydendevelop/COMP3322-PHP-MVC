@@ -1,0 +1,16 @@
+body{
+  background-color: #efefef;
+}
+
+.LoginPageContainer_1{
+  text-align: center;
+}
+
+.LoginPageContainer_2{
+  margin: 5em auto auto auto;
+  width: 70%;
+  border: 1px solid;
+  text-align: center;
+  background-color: aliceblue;
+  padding-bottom: 2em;
+}

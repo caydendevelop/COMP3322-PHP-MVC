@@ -1,0 +1,85 @@
+.navBar{
+  border-bottom: 1px solid #ff9800;
+  margin:0px;
+  background-color: #ff9800;
+  padding-left:2em;
+  padding-right:1em;
+}
+
+.topNavButton{
+  margin:5px;
+  padding:1em;
+  color:white;
+  border: none;
+  background-color:#ff9800;
+  font-size: 16px;
+}
+
+.navSearch{
+  width:25em;
+  margin-left:2em;
+}
+
+.leftNav{
+  width: 20%;
+  background-color: #ff9800;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  padding-top:5em;
+  padding-left:1em;
+  
+}
+
+.leftNavButton{
+  display: block;
+  margin:5px;
+  padding:1em;
+  color:white;
+  border: none;
+  background-color:#ff9800;
+  font-size: 16px;
+}
+
+.navAlignRight{
+  float:right;
+}
+
+.askButtonContainer{
+  text-align: end;
+  padding-bottom:1em;
+}
+
+.askButton{
+  
+  padding:1em;
+  border: none;
+  font-size: 16px;
+}
+
+.mainContainer{
+  
+  margin-bottom:1em;
+  margin-left: 21%;
+  padding-top:2em;
+  padding-right: 1em;
+  padding-left:1em;
+  padding-bottom: 3em;
+  background-color:#efefef;
+}
+
+.card{
+  background-color: white;
+  margin:1em;
+  padding:1em;
+}
+
+.leftSpan{
+  
+  display: inline-block;
+}
+
+.rightSpan{
+  margin-left:2em;
+  display: inline-block;
+}

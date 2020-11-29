@@ -1,0 +1,22 @@
+body{
+  background-color:aliceblue;
+}
+
+.backButton{
+  padding:1em;
+  border: none;
+  font-size: 16px;
+}
+
+.card{
+  background-color: white;
+  margin:1em;
+  padding:1em;
+}
+
+
+.answerCard{
+  background-color: white;
+  margin:1em 1em 1em 3em;
+  padding:1em;
+}
