@@ -36,7 +36,7 @@
     <?php 
       if($_SESSION['user_logged_in'] === true) {
         echo"<div class='askButtonContainer'>
-              <a href='./NewQuestionPage.html'><button class='askButton'>Ask Question</button></a>
+              <a href='./NewQuestionPage.php'><button class='askButton'>Ask Question</button></a>
             </div>";
       }
     ?>
