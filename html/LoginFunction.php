@@ -15,7 +15,15 @@
 
   //判斷帳號與密碼是否為空白
   //以及MySQL資料庫裡是否有這個會員
-  if($userEmail != null && $userPassword != null && $row[2] == $userEmail && $row[3] == $userPassword)
+  if($userEmail == null || $row[2] != $userEmail) {
+    echo "User is not registered";
+  }
+
+  else if($userPassword == null || $row[3] != $userPassword) {
+    echo "Unauthorized access";
+  }
+
+  else if($userEmail != null && $userPassword != null && $row[2] == $userEmail && $row[3] == $userPassword)
   {
     //將帳號寫入session，方便驗證使用者身份
     $_SESSION['userID'] = $row[0];
@@ -23,12 +31,11 @@
     $_SESSION['userEmail'] = $row[2];
     $_SESSION['user_logged_in'] = true;
 
-    echo '登入成功!';
     echo '<meta http-equiv=REFRESH CONTENT=1;url=MainPage.php>';
   }
   else
   {
     echo '登入失敗!';
-    echo '<meta http-equiv=REFRESH CONTENT=1;url=MainPage.php>';
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=LoginPage.php>';
   }
 ?>
