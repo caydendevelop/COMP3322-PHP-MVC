@@ -1,13 +1,13 @@
 body {margin:0;}
 
 .navBar{
-  border-bottom: 1px solid #ff0000;
-  margin:0px;
   background-color: #ff9800;
   padding-left:2em;
   padding-right:1em;
+  overflow: hidden;
   position: fixed;
-  overflow: auto;
+  top: 0;
+  width: 98%;
 }
 
 .topNavButton{
@@ -25,11 +25,12 @@ body {margin:0;}
 }
 
 .leftNav{
-  width: 20%;
+  width: 19%;
   background-color: #ff9800;
   position: fixed;
   height: 100%;
   overflow: auto;
+  margin-top:3em;
   padding-top:5em;
   padding-left:1em;
   
@@ -62,9 +63,9 @@ body {margin:0;}
 }
 
 .mainContainer{
-  
+  margin-top:3em;
   margin-bottom:1em;
-  margin-left: 21%;
+  margin-left: 19.8%;
   padding-top:2em;
   padding-right: 1em;
   padding-left:1em;
