@@ -13,7 +13,7 @@
     <button class="topNavButton">Home</button>
     <button class="topNavButton">Hot</button>
     <input type="text" class="navSearch"/>
-    <?php 
+    
       if($_SESSION['user_logged_in'] === true) {
         echo "<a href='./LogoutFunction.php'> <button class='topNavButton navAlignRight'>Log out</button></a>";
         //echo'<input type="submit" name="submit" class="topNavButton navAlignRight" id="LogoutButton" value="Log Out" action="./LogoutFunction.php"/>';
@@ -21,7 +21,7 @@
         echo "<a href='./RegisterPage.php'><button class='topNavButton navAlignRight'>Register</button></a>
               <a href='./LoginPage.php'><button class='topNavButton navAlignRight'>Log in</button></a>";
       }
-    ?>
+    
 
   </nav>
 
@@ -33,43 +33,57 @@
   </div>
 
   <main class="mainContainer">
-    <?php 
+
+    <?php
+
       if($_SESSION['user_logged_in'] === true) {
         echo"<div class='askButtonContainer'>
               <a href='./NewQuestionPage.php'><button class='askButton'>Ask Question</button></a>
             </div>";
       }
-    ?>
-
-    <?php
       if($_SESSION['user_logged_in'] === true) {
         echo"<div class='card'>
               <h3>$_SESSION[userName]</h3>
               <h2>What is your Question?</h2>
             </div>";
       }
-    ?>
 
-    <div class="card">
-      <h4>Javascript</h4>
+      //連接資料庫
+      //只要此頁面上有用到連接MySQL就要include它
+      include("config.php");
+
+      //搜尋資料庫資料
+      $sql = "SELECT * FROM qTable";
+      $result = mysqli_query($link, $sql);  // $link from config.php , save the result to $result
       
-      <div class="leftSpan">
-        <h3>userName</h3>
-        <h5>time</h5>
-      </div>
-
-      <div class="rightSpan">
-        <h3>questionTitle</h3>
-        <p>sahfjasdhfjdlkafhdlkajfhdljkahfdlka;f kjsdhfjk dskljkljfdskf dksf ds dk dshkjf hsdaklf</p>
-      </div>
-
-      <div>
-        <button>Upvote</button>
-        <button>Answer</button>
-      </div>
-
-    </div>
-
+      //Display the Questions from qTable
+      if(mysqli_num_rows($result) > 0)
+      {
+        while($row = mysqli_fetch_array($result)) 
+        {
+          echo "<div class='card'>
+                  <h4>".$row['qSpace']."</h4>
+                  
+                  <div class='leftSpan'>
+                    <h3>".$row['userName']."</h3>
+                    <h5>".$row['qTime']."</h5>
+                  </div>
+            
+                  <div class='rightSpan'>
+                    <h3>".$row['questionTitle']."</h3>
+                    <p>".$row['qContent']."</p>
+                  </div>
+            
+                  <div>
+                    <button>Upvote</button>
+                    <button>Answer</button>
+                  </div>
+            
+                </div>";
+        }
+      }
+      
+    ?>
 
   </main>
     
