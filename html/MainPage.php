@@ -9,8 +9,8 @@
 </head>
 <body>
   <nav class="navBar">
-    <button class="topNavButton">Forum</button>
-    <button class="topNavButton">Home</button>
+    <a href='./MainPage.php'><button class="topNavButton">Ques</button></a>
+    <a href='./MainPage.php'><button class="topNavButton">Home</button></a>
     <button class="topNavButton">Hot</button>
     <input type="text" class="navSearch"/>
 
@@ -27,10 +27,12 @@
   </nav>
 
   <div class="leftNav">
-    <button class="leftNavButton ">Algorithm</button>
-    <button class="leftNavButton ">Machine Learning</button>
-    <button class="leftNavButton">System</button>
-    <button class="leftNavButton">Javascript</button>
+ 
+    <input class="leftNavButton" type="submit" name="submitAlgorithm" id="buttonAlgorithm" value="Algorithm" onclick="algorithmFilter()"/>
+    <input class="leftNavButton" type="submit" name="submitML" id="buttonML" value="Machine Learning" onclick="MLFilter()"/>
+    <input class="leftNavButton" type="submit" name="submitSystem" id="buttonSystem" value="System"  onclick="SystemFilter()"/>
+    <input class="leftNavButton" type="submit" name="submitJavascript" id="buttonJavascript" value="Javascript"  onclick="JavascriptFilter()"/>
+    
   </div>
 
   <main class="mainContainer">
@@ -45,9 +47,11 @@
       if($_SESSION['user_logged_in'] === true) {
         echo"<div class='card'>
               <h3>$_SESSION[userName]</h3>
-              <h2>What is your Question?</h2>
+              <a href='./NewQuestionPage.php'><h2>What is your Question?</h2></a>
             </div>";
       }
+
+      print"<div id='cardContainer'>";
 
       //連接資料庫
       //只要此頁面上有用到連接MySQL就要include它
@@ -83,10 +87,84 @@
                 </div>";
         }
       }
-
+      print"</div>";
     ?>
 
   </main>
+  <script>
+    function algorithmFilter(){
+      let cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = "";
+        
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "MainPageFunction.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("filter=Algorithm");
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var mesgs = document.getElementById("cardContainer");
+          mesgs.innerHTML = xmlhttp.responseText;
+        }
+      }
+    }
+
+    function MLFilter(){
+      let cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = "";
+        
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "MainPageFunction.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("filter=ML");
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var mesgs = document.getElementById("cardContainer");
+          mesgs.innerHTML = xmlhttp.responseText;
+        }
+      }
+    }
+
+    function SystemFilter(){
+      let cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = "";
+        
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "MainPageFunction.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("filter=System");
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var mesgs = document.getElementById("cardContainer");
+          mesgs.innerHTML = xmlhttp.responseText;
+        }
+      }
+    }
+
+    function JavascriptFilter(){
+      let cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = "";
+        
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "MainPageFunction.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("filter=Javascript");
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var mesgs = document.getElementById("cardContainer");
+          mesgs.innerHTML = xmlhttp.responseText;
+        }
+      }
+    }
     
+    
+  </script>
 </body>
 </html>
