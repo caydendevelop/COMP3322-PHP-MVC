@@ -25,8 +25,6 @@
       $sql = "SELECT * FROM qTable WHERE qID = '$para' ORDER BY qID DESC";; // Last entry First out :)
       $result = mysqli_query($link, $sql);  // $link from config.php , save the result to $result
 
-      
-
       //Display the Questions from qTable
       if(mysqli_num_rows($result) > 0)
       {
@@ -50,18 +48,11 @@
                     <p>".$row['qContent']."</p>
                   </div>
             
-                 
-            
                 </div>";
         }
       }
       print"</div>";
       
-    
-
-        // if($_SESSION['userName'] == )
-        // <button style="float: right;">Delete</button>
-        // <button style="float: right;">Edit</button>
     ?>
   </div>
 

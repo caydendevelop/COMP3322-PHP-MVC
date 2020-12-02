@@ -15,29 +15,30 @@
     if(mysqli_num_rows($result) > 0)
     {
       while($row = mysqli_fetch_array($result)) 
-      {
-        echo "<div class='card'>
-                <h4>".$row['qSpace']."</h4>
-                
-                <div class='leftSpan'>
-                  <span style='display:none'>".$row['qCreatorID']."</span>
-                  <h3>".$row['qCreatorName']."</h3>
-                  <h5>".$row['qTime']."</h5>
-                </div>
-          
-                <div class='rightSpan'>
-                  <span style='display:none'>".$row['qID']."</span>
-                  <h3>".$row['qTitle']."</h3>
-                  <p>".$row['qContent']."</p>
-                </div>
-          
-                <div>
-                  <button>Upvote</button>
-                  <button>Answer</button>
-                </div>
-          
-              </div>";
-      }
+        {
+          echo "<div class='card'>
+                  <h4>".$row['qSpace']."</h4>
+                  <div class='leftSpan'>
+                    <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
+                    <h3>".$row['qCreatorName']."</h3>
+                    <h5>".$row['qTime']."</h5>
+                  </div>
+            
+                  <div class='rightSpan' id=".$row['qID'].">       
+                    <form action='QuestionDetailPage.php' method='POST'>  
+                      <input type='hidden' name='redirectQID' value=".$row['qID'].">
+                      <input type='submit' name='submit' value=".$row['qTitle'].">
+                    </form>
+                    <p>".$row['qContent']."</p>
+                  </div>
+            
+                  <div>
+                    <button>Upvote</button>
+                    <button>Answer</button>
+                  </div>
+            
+                </div>";
+        }
     }
   }
 
@@ -50,8 +51,8 @@
     if(mysqli_num_rows($result) > 0)
     {
       while($row = mysqli_fetch_array($result)) 
-      {
-        echo "<div class='card'>
+        {
+          echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
                     <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
@@ -59,8 +60,11 @@
                     <h5>".$row['qTime']."</h5>
                   </div>
             
-                  <div class='rightSpan' id=".$row['qID'].">                    
-                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                  <div class='rightSpan' id=".$row['qID'].">       
+                    <form action='QuestionDetailPage.php' method='POST'>  
+                      <input type='hidden' name='redirectQID' value=".$row['qID'].">
+                      <input type='submit' name='submit' value=".$row['qTitle'].">
+                    </form>
                     <p>".$row['qContent']."</p>
                   </div>
             
@@ -70,7 +74,7 @@
                   </div>
             
                 </div>";
-      }
+        }
     }
   } elseif ($_POST['filter'] =='ML') 
   {
@@ -82,8 +86,8 @@
     if(mysqli_num_rows($result) > 0)
     {
       while($row = mysqli_fetch_array($result)) 
-      {
-        echo "<div class='card'>
+        {
+          echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
                     <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
@@ -91,8 +95,11 @@
                     <h5>".$row['qTime']."</h5>
                   </div>
             
-                  <div class='rightSpan' id=".$row['qID'].">                    
-                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                  <div class='rightSpan' id=".$row['qID'].">       
+                    <form action='QuestionDetailPage.php' method='POST'>  
+                      <input type='hidden' name='redirectQID' value=".$row['qID'].">
+                      <input type='submit' name='submit' value=".$row['qTitle'].">
+                    </form>
                     <p>".$row['qContent']."</p>
                   </div>
             
@@ -102,7 +109,7 @@
                   </div>
             
                 </div>";
-      }
+        }
     }
   } elseif ($_POST['filter'] =='System') 
   {
@@ -114,8 +121,8 @@
     if(mysqli_num_rows($result) > 0)
     {
       while($row = mysqli_fetch_array($result)) 
-      {
-        echo "<div class='card'>
+        {
+          echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
                     <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
@@ -123,8 +130,11 @@
                     <h5>".$row['qTime']."</h5>
                   </div>
             
-                  <div class='rightSpan' id=".$row['qID'].">                    
-                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                  <div class='rightSpan' id=".$row['qID'].">       
+                    <form action='QuestionDetailPage.php' method='POST'>  
+                      <input type='hidden' name='redirectQID' value=".$row['qID'].">
+                      <input type='submit' name='submit' value=".$row['qTitle'].">
+                    </form>
                     <p>".$row['qContent']."</p>
                   </div>
             
@@ -134,7 +144,7 @@
                   </div>
             
                 </div>";
-      }
+        }
     }
   } elseif ($_POST['filter'] =='Javascript') 
   {
@@ -146,8 +156,8 @@
     if(mysqli_num_rows($result) > 0)
     {
       while($row = mysqli_fetch_array($result)) 
-      {
-        echo "<div class='card'>
+        {
+          echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
                     <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
@@ -155,8 +165,11 @@
                     <h5>".$row['qTime']."</h5>
                   </div>
             
-                  <div class='rightSpan' id=".$row['qID'].">                    
-                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                  <div class='rightSpan' id=".$row['qID'].">       
+                    <form action='QuestionDetailPage.php' method='POST'>  
+                      <input type='hidden' name='redirectQID' value=".$row['qID'].">
+                      <input type='submit' name='submit' value=".$row['qTitle'].">
+                    </form>
                     <p>".$row['qContent']."</p>
                   </div>
             
@@ -166,7 +179,7 @@
                   </div>
             
                 </div>";
-      }
+        }
     }
   }
 
