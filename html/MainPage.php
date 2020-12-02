@@ -12,8 +12,7 @@
     <a href='./MainPage.php'><button class="topNavButton">Ques</button></a>
     <a href='./MainPage.php'><button class="topNavButton">Home</button></a>
     <button class="topNavButton">Hot</button>
-    <input type="text" class="navSearch"/>
-
+    <input type="text" class="navSearch" name="submitSearch" id="navSearch" onkeyup="navSearch(this.value)"/>
     <?php
       if($_SESSION['user_logged_in'] === true) {
         echo "<a href='./LogoutFunction.php'> <button class='topNavButton navAlignRight'>Log out</button></a>";
@@ -92,6 +91,40 @@
 
   </main>
   <script>
+    function navSearch(str){
+      let cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = "";
+        
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "MainPageFunction.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("navSearch="+str);
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var mesgs = document.getElementById("cardContainer");
+          mesgs.innerHTML = xmlhttp.responseText;
+        }
+      }
+      // if (str.length==0) {
+      //   document.getElementById("navSearch").innerHTML="";
+      //   document.getElementById("navSearch").style.border="0px";
+      //   return;
+      // }
+      // var xmlhttp=new XMLHttpRequest();
+      // xmlhttp.onreadystatechange=function() {
+      //   if (this.readyState==4 && this.status==200) {
+      //     document.getElementById("navSearch").innerHTML=this.responseText;
+      //     document.getElementById("navSearch").style.border="1px solid #A5ACB2";
+      //   }
+      // }
+      // xmlhttp.open("POST", "MainPageFunction.php", true);
+      // xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      // xmlhttp.send(`search=`str``);
+    }
+
+
     function algorithmFilter(){
       let cardContainer = document.getElementById('cardContainer');
       cardContainer.innerHTML = "";
