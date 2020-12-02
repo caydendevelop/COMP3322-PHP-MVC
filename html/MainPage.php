@@ -67,14 +67,17 @@
         {
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
-                  
                   <div class='leftSpan'>
+                    <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
                     <h3>".$row['qCreatorName']."</h3>
                     <h5>".$row['qTime']."</h5>
                   </div>
             
-                  <div class='rightSpan'>
-                    <h3>".$row['qTitle']."</h3>
+                  <div class='rightSpan' id=".$row['qID'].">       
+                    <form action='QuestionDetailPage.php' method='POST'>  
+                      <input type='hidden' name='redirectQID' value=".$row['qID'].">
+                      <input type='submit' name='submit' value=".$row['qTitle'].">
+                    </form>
                     <p>".$row['qContent']."</p>
                   </div>
             
@@ -90,6 +93,7 @@
     ?>
 
   </main>
+  
   <script>
     function navSearch(str){
       let cardContainer = document.getElementById('cardContainer');
@@ -107,23 +111,7 @@
           mesgs.innerHTML = xmlhttp.responseText;
         }
       }
-      // if (str.length==0) {
-      //   document.getElementById("navSearch").innerHTML="";
-      //   document.getElementById("navSearch").style.border="0px";
-      //   return;
-      // }
-      // var xmlhttp=new XMLHttpRequest();
-      // xmlhttp.onreadystatechange=function() {
-      //   if (this.readyState==4 && this.status==200) {
-      //     document.getElementById("navSearch").innerHTML=this.responseText;
-      //     document.getElementById("navSearch").style.border="1px solid #A5ACB2";
-      //   }
-      // }
-      // xmlhttp.open("POST", "MainPageFunction.php", true);
-      // xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      // xmlhttp.send(`search=`str``);
     }
-
 
     function algorithmFilter(){
       let cardContainer = document.getElementById('cardContainer');
@@ -196,7 +184,19 @@
         }
       }
     }
-    
+
+    function redirectQuestion(para){
+      let qID = para.parentNode.id;
+
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("GET", "QuestionDetailPage.php", true);
+      xmlhttp.send("redirectQID="+qID);
+      setTimeout(() => { location.assign('QuestionDetailPage.php'); }, 1000);
+      //location.assign('QuestionDetailPage.php');
+
+      
+    }
     
   </script>
 </body>

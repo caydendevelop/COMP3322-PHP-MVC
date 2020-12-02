@@ -20,11 +20,13 @@
                 <h4>".$row['qSpace']."</h4>
                 
                 <div class='leftSpan'>
+                  <span style='display:none'>".$row['qCreatorID']."</span>
                   <h3>".$row['qCreatorName']."</h3>
                   <h5>".$row['qTime']."</h5>
                 </div>
           
                 <div class='rightSpan'>
+                  <span style='display:none'>".$row['qID']."</span>
                   <h3>".$row['qTitle']."</h3>
                   <p>".$row['qContent']."</p>
                 </div>
@@ -50,24 +52,24 @@
       while($row = mysqli_fetch_array($result)) 
       {
         echo "<div class='card'>
-                <h4>".$row['qSpace']."</h4>
-                
-                <div class='leftSpan'>
-                  <h3>".$row['qCreatorName']."</h3>
-                  <h5>".$row['qTime']."</h5>
-                </div>
-          
-                <div class='rightSpan'>
-                  <h3>".$row['qTitle']."</h3>
-                  <p>".$row['qContent']."</p>
-                </div>
-          
-                <div>
-                  <button>Upvote</button>
-                  <button>Answer</button>
-                </div>
-          
-              </div>";
+                  <h4>".$row['qSpace']."</h4>
+                  <div class='leftSpan'>
+                    <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
+                    <h3>".$row['qCreatorName']."</h3>
+                    <h5>".$row['qTime']."</h5>
+                  </div>
+            
+                  <div class='rightSpan' id=".$row['qID'].">                    
+                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                    <p>".$row['qContent']."</p>
+                  </div>
+            
+                  <div>
+                    <button>Upvote</button>
+                    <button>Answer</button>
+                  </div>
+            
+                </div>";
       }
     }
   } elseif ($_POST['filter'] =='ML') 
@@ -82,24 +84,24 @@
       while($row = mysqli_fetch_array($result)) 
       {
         echo "<div class='card'>
-                <h4>".$row['qSpace']."</h4>
-                
-                <div class='leftSpan'>
-                  <h3>".$row['qCreatorName']."</h3>
-                  <h5>".$row['qTime']."</h5>
-                </div>
-          
-                <div class='rightSpan'>
-                  <h3>".$row['qTitle']."</h3>
-                  <p>".$row['qContent']."</p>
-                </div>
-          
-                <div>
-                  <button>Upvote</button>
-                  <button>Answer</button>
-                </div>
-          
-              </div>";
+                  <h4>".$row['qSpace']."</h4>
+                  <div class='leftSpan'>
+                    <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
+                    <h3>".$row['qCreatorName']."</h3>
+                    <h5>".$row['qTime']."</h5>
+                  </div>
+            
+                  <div class='rightSpan' id=".$row['qID'].">                    
+                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                    <p>".$row['qContent']."</p>
+                  </div>
+            
+                  <div>
+                    <button>Upvote</button>
+                    <button>Answer</button>
+                  </div>
+            
+                </div>";
       }
     }
   } elseif ($_POST['filter'] =='System') 
@@ -114,24 +116,24 @@
       while($row = mysqli_fetch_array($result)) 
       {
         echo "<div class='card'>
-                <h4>".$row['qSpace']."</h4>
-                
-                <div class='leftSpan'>
-                  <h3>".$row['qCreatorName']."</h3>
-                  <h5>".$row['qTime']."</h5>
-                </div>
-          
-                <div class='rightSpan'>
-                  <h3>".$row['qTitle']."</h3>
-                  <p>".$row['qContent']."</p>
-                </div>
-          
-                <div>
-                  <button>Upvote</button>
-                  <button>Answer</button>
-                </div>
-          
-              </div>";
+                  <h4>".$row['qSpace']."</h4>
+                  <div class='leftSpan'>
+                    <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
+                    <h3>".$row['qCreatorName']."</h3>
+                    <h5>".$row['qTime']."</h5>
+                  </div>
+            
+                  <div class='rightSpan' id=".$row['qID'].">                    
+                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                    <p>".$row['qContent']."</p>
+                  </div>
+            
+                  <div>
+                    <button>Upvote</button>
+                    <button>Answer</button>
+                  </div>
+            
+                </div>";
       }
     }
   } elseif ($_POST['filter'] =='Javascript') 
@@ -146,24 +148,24 @@
       while($row = mysqli_fetch_array($result)) 
       {
         echo "<div class='card'>
-                <h4>".$row['qSpace']."</h4>
-                
-                <div class='leftSpan'>
-                  <h3>".$row['qCreatorName']."</h3>
-                  <h5>".$row['qTime']."</h5>
-                </div>
-          
-                <div class='rightSpan'>
-                  <h3>".$row['qTitle']."</h3>
-                  <p>".$row['qContent']."</p>
-                </div>
-          
-                <div>
-                  <button>Upvote</button>
-                  <button>Answer</button>
-                </div>
-          
-              </div>";
+                  <h4>".$row['qSpace']."</h4>
+                  <div class='leftSpan'>
+                    <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
+                    <h3>".$row['qCreatorName']."</h3>
+                    <h5>".$row['qTime']."</h5>
+                  </div>
+            
+                  <div class='rightSpan' id=".$row['qID'].">                    
+                    <h3 onclick='redirectQuestion(this)'>".$row['qTitle']."</h3>
+                    <p>".$row['qContent']."</p>
+                  </div>
+            
+                  <div>
+                    <button>Upvote</button>
+                    <button>Answer</button>
+                  </div>
+            
+                </div>";
       }
     }
   }
