@@ -82,7 +82,7 @@
                   </div>
             
                   <div>
-                    <button>Upvote</button>
+                    <button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote</button>
                     <button>Answer</button>
                   </div>
             
@@ -95,6 +95,22 @@
   </main>
   
   <script>
+    function upvote(para){
+      
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "upvote.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("upvote="+para.name);
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var upBtn = document.getElementById(para.id);
+          upBtn.innerHTML = xmlhttp.responseText;
+        }
+      }
+    }
+
     function navSearch(str){
       let cardContainer = document.getElementById('cardContainer');
       cardContainer.innerHTML = "";
@@ -183,19 +199,6 @@
           mesgs.innerHTML = xmlhttp.responseText;
         }
       }
-    }
-
-    function redirectQuestion(para){
-      let qID = para.parentNode.id;
-
-      var xmlhttp = new XMLHttpRequest();
-          
-      xmlhttp.open("GET", "QuestionDetailPage.php", true);
-      xmlhttp.send("redirectQID="+qID);
-      setTimeout(() => { location.assign('QuestionDetailPage.php'); }, 1000);
-      //location.assign('QuestionDetailPage.php');
-
-      
     }
     
   </script>
