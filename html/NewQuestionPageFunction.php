@@ -14,7 +14,7 @@ include("config.php");
   $qTime = date("Y-m-d",time());
   $qCreatorID = $_SESSION['userID'];
   $qCreatorName = $_SESSION['userName'];
-  // $temp = new array();
+  $qAnswer = json_encode( array() );
   $qUp = json_encode( array() );
 
   //搜尋資料庫資料
@@ -30,7 +30,7 @@ include("config.php");
   // {
   
   
-  $query="INSERT INTO qTable (qID, qSpace, qTitle, qContent, qUp, qTime, qCreatorID, qCreatorName) VALUES ('$qID', '$qSpace', '$qTitle', '$qContent', '$qUp ', '$qTime', '$qCreatorID', '$qCreatorName')";//向数据库插入表单传来的值的sql
+  $query="INSERT INTO qTable (qID, qSpace, qTitle, qContent, qAnswer, qUp, qTime, qCreatorID, qCreatorName) VALUES ('$qID', '$qSpace', '$qTitle', '$qContent', '$qAnswer',  '$qUp ', '$qTime', '$qCreatorID', '$qCreatorName')";//向数据库插入表单传来的值的sql
   $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
   
   if (!$result){

@@ -13,7 +13,7 @@
 
   <div class="card">
     <div>
-      <button>Upvote</button>
+      
       
       <?php
 
@@ -30,11 +30,27 @@
       {
         while($row = mysqli_fetch_array($result)) 
         {
-
+          $qUp = json_decode($row['qUp']);
+          echo "<button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>";
           if($_SESSION['userID'] == $row['qCreatorID']){
             echo "<button style='float: right;'>Delete</button>
                   <button style='float: right;'>Edit</button>";
           }
+          // echo "<div class='card'>
+          //         <h4>".$row['qSpace']."</h4>
+          //         <div class='leftSpan'>
+          //           <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
+          //           <h3>".$row['qCreatorName']."</h3>
+          //           <h5>".$row['qTime']."</h5>
+          //         </div>
+            
+          //         <div class='rightSpan' id=".$row['qID'].">                    
+          //           <h3>".$row['qTitle']."</h3>
+          //           <p>".$row['qContent']."</p>
+          //         </div>
+            
+          //       </div>";
+          
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
@@ -50,6 +66,7 @@
             
                 </div>";
         }
+        
       }
       print"</div>";
       
@@ -63,7 +80,23 @@
     <p>sahfjasdhfjdlkafhdlkajfhdljkahfdlka;f kjsdhfjk dskljkljfdskf dksf ds dk dshkjf hsdaklf</p> -->
   </div>
 
-  
+  <script>
+    function upvote(para){
+      
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "upvote.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("upvote="+para.name);
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var upBtn = document.getElementById(para.id);
+          upBtn.innerHTML = xmlhttp.responseText;
+        }
+      }
+    }
+  </script>
 </body>
 </html>
 
