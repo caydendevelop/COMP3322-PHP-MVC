@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+// $_SESSION['Space'] = "original";
+?>
 <!--上方語法為啟用session，此語法要放在網頁最前方-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -11,8 +13,8 @@
   <nav class="navBar">
     <a href='./MainPage.php'><button class="topNavButton">Ques</button></a>
     <a href='./MainPage.php'><button class="topNavButton">Home</button></a>
-    <input class="topNavButton" type="submit" name="submitHot" id="buttonHot" value="Hot" onclick="hotFilter()"/>
-   
+    <!-- <input class="topNavButton" type="submit" name="submitHot" id="buttonHot" value="Hot" onclick="hotFilter()"/> -->
+    <button class="topNavButton" onclick="hot()">Hot1</button>
     <input type="text" class="navSearch" name="submitSearch" id="navSearch" onkeyup="navSearch(this.value)"/>
     <?php
       if($_SESSION['user_logged_in'] === true) {
@@ -44,7 +46,7 @@
               <a href='./NewQuestionPage.php'><button class='askButton'>Ask Question</button></a>
             </div>";
       
-        echo"<div class='card'>
+        echo"<div class='card' data-id='65534'>
               <h3>$_SESSION[userName]</h3>
               <a href='./NewQuestionPage.php'><h2>What is your Question?</h2></a>
             </div>";
@@ -66,7 +68,7 @@
         while($row = mysqli_fetch_array($result)) 
         {
           $qUp = json_decode($row['qUp']);
-          echo "<div class='card'>
+          echo "<div class='card' data-id='".count($qUp)."'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
                     <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
@@ -96,24 +98,38 @@
   </main>
   
   <script>
-
-    function hotFilter(){
-      let cardContainer = document.getElementById('cardContainer');
-      cardContainer.innerHTML = "";
-        
-      var xmlhttp = new XMLHttpRequest();
-          
-      xmlhttp.open("POST", "MainPageFunction.php", true);
-      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xmlhttp.send("filter=Hot");
-
-      xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          var mesgs = document.getElementById("cardContainer");
-          mesgs.innerHTML = xmlhttp.responseText;
-        }
-      }
+    function hot(){
+      var aDiv = document.getElementsByClassName('card');
+      var arr = [];
+      for(var i=0;i<aDiv.length;i++)
+      {
+          arr.push(aDiv[i]);  //aDiv是元素的集合，并不是数组，所以不能直接用数组的baisort进行排序。
+      }
+      arr.sort(function(a,b){return b.getAttribute('data-id') - a.getAttribute('data-id')});
+      for(var i=0;i<arr.length;i++)
+      {
+          let hi = document.getElementById('cardContainer')
+          hi.appendChild(arr[i]); //将排好序的元素，重新塞到body里面显示。
+      }
     }
+
+    // function hotFilter(){
+    //   let cardContainer = document.getElementById('cardContainer');
+    //   cardContainer.innerHTML = "";
+        
+    //   var xmlhttp = new XMLHttpRequest();
+          
+    //   xmlhttp.open("POST", "MainPageFunction.php", true);
+    //   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //   xmlhttp.send("filter=Hot");
+
+    //   xmlhttp.onreadystatechange = function () {
+    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //       var mesgs = document.getElementById("cardContainer");
+    //       mesgs.innerHTML = xmlhttp.responseText;
+    //     }
+    //   }
+    // }
 
     function upvote(para){
       
