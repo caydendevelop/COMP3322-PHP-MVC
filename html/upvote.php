@@ -20,6 +20,11 @@
       $json_qUp = json_encode($userID);
       $query=" UPDATE qTable SET qUp = '$json_qUp' WHERE qID = '$qID' ";//向数据库插入表单传来的值的sql
       $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
+      if (!$result){
+        die('Error: ' .mysqli_error($link));
+      }else{
+        echo "Voted!";
+      }
     } 
     else 
     { 
@@ -30,6 +35,11 @@
         $json_qUp = json_encode($php_qUp); // php -> json
         $query=" UPDATE qTable SET qUp = '$json_qUp'  WHERE qID = '$qID' ";//向数据库插入表单传来的值
         $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
+        if (!$result){
+          die('Error: ' .mysqli_error($link));
+        }else{
+          echo "Unvoted!";
+        }
       } 
       else // 未like
       { 
@@ -37,14 +47,19 @@
         $json_qUp = json_encode($php_qUp);
         $query=" UPDATE qTable SET qUp = '$json_qUp'  WHERE qID = '$qID' ";//向数据库插入表单传来的值的sql
         $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
+        if (!$result){
+          die('Error: ' .mysqli_error($link));
+        }else{
+          echo "Voted!";
+        }
       }
     }
 
-    if (!$result){
-      die('Error: ' .mysqli_error($link));
-    }else{
-      echo "Upvote (".count($php_qUp).")";
-    }
+    // if (!$result){
+    //   die('Error: ' .mysqli_error($link));
+    // }else{
+    //   echo "Voted!";
+    // }
     // mysqli_free_result($result);
   mysqli_close($link);    
   } else {

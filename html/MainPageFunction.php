@@ -29,7 +29,7 @@
                     <h5>".$row['qTime']."</h5>
                   </div>
             
-                  <div class='rightSpan' id=".$row['qID'].">       
+                  <div class='rightSpan' id=".$row['qID']."> 
                     <form action='QuestionDetailPage.php' method='POST'>  
                       <input type='hidden' name='redirectQID' value=".$row['qID'].">
                       <input type='submit' name='submit' value=".$row['qTitle'].">

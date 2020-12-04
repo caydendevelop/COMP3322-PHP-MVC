@@ -12,52 +12,60 @@
   <a href='./MainPage.php'><button class="backButton">back</button></a>
 
   <div class="card">
-    <div>
+    
       
       <?php
 
       include("config.php");
 
-      $para = $_POST['redirectQID'];
+      $qID = $_POST['redirectQID'];
       
-      $sql = "SELECT * FROM qTable WHERE qID = '$para' ORDER BY qID DESC";; // Last entry First out :)
+      $sql = "SELECT * FROM qTable WHERE qID = '$qID' ORDER BY qID DESC";; // Last entry First out :)
       $result = mysqli_query($link, $sql);  // $link from config.php , save the result to $result
 
       //Display the Questions from qTable
       if(mysqli_num_rows($result) > 0)
       {
-        while($row = mysqli_fetch_array($result)) 
-        {
-          $qUp = json_decode($row['qUp']);
-          echo "<button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>";
-          if($_SESSION['userID'] == $row['qCreatorID']){
-            echo "<button style='float: right;'>Delete</button>
-                  <button style='float: right;'>Edit</button>";
-          }
-          
-          echo "<div class='card'>
-                  <h4>".$row['qSpace']."</h4>
-                  <div class='leftSpan'>
-                    <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
-                    <h3>".$row['qCreatorName']."</h3>
-                    <h5>".$row['qTime']."</h5>
-                  </div>
-            
-                  <div class='rightSpan' id=".$row['qID'].">                    
-                    <h3>".$row['qTitle']."</h3>
-                    <p>".$row['qContent']."</p>
-                  </div>
-            
-                </div>";
+        $row = mysqli_fetch_array($result);
+        $qUp = json_decode($row['qUp']);
+        echo "<button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>";
+        if($_SESSION['userID'] == $row['qCreatorID']){
+          echo "<button style='float: right;'>Delete</button>
+                <button style='float: right;'>Edit</button>";
         }
         
+        echo "<div class='card'>
+                <h4>".$row['qSpace']."</h4>
+                <div class='leftSpan'>
+                  <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
+                  <h3>".$row['qCreatorName']."</h3>
+                  <h5>".$row['qTime']."</h5>
+                </div>
+          
+                <div class='rightSpan' id=".$qID.">                    
+                  <h3>".$row['qTitle']."</h3>
+                  <p>".$row['qContent']."</p>
+                </div>
+          
+              </div>";
+      
+      
       }
       print"</div>";
 
       if($_SESSION['user_logged_in'] === true) {
         echo"<div class='answerCard'>
               <h3>$_SESSION[userName]</h3>
-              <a href='./NewQuestionPage.php'><h2>Post your new answer.</h2></a>
+              <button id='postAnsLink' onclick='show()'><h2>Post your new answer.</h2></button>
+              <div id='ansDiv' class='ansDiv noShow'>
+                <form action='./answerFunction.php' method='POST'>
+                  <input type='hidden' name='ansQID' value=".$row['qID'].">
+                  <textarea name='ansContent' id='ansContent' style='width:35em; height:8em;' required></textarea>
+                  <br/><br/>
+                  <input type='submit' name='ansButton' id='ansButton' value='Submit' />
+                </form>
+                <button onclick='noShow()'>Cancel</button>
+              </div>
             </div>";
       }
       
@@ -72,10 +80,26 @@
   </div>
 
   <script>
+    let getAnsDiv = document.getElementById('ansDiv');
+    let getpostAnsLink = document.getElementById('postAnsLink');
+    let getansContent = document.getElementById('ansContent');
+
+    function show(){
+      getAnsDiv.classList.remove('noShow');
+      getpostAnsLink.classList.add('noShow');
+    }
+
+    function noShow(){
+      getAnsDiv.classList.add('noShow');
+      getpostAnsLink.classList.remove('noShow');
+      getansContent.value = '';
+    }
+
+
+
     function upvote(para){
       
       var xmlhttp = new XMLHttpRequest();
-          
       xmlhttp.open("POST", "upvote.php", true);
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.send("upvote="+para.name);
