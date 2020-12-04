@@ -11,7 +11,8 @@
   <nav class="navBar">
     <a href='./MainPage.php'><button class="topNavButton">Ques</button></a>
     <a href='./MainPage.php'><button class="topNavButton">Home</button></a>
-    <button class="topNavButton">Hot</button>
+    <input class="topNavButton" type="submit" name="submitHot" id="buttonHot" value="Hot" onclick="hotFilter()"/>
+   
     <input type="text" class="navSearch" name="submitSearch" id="navSearch" onkeyup="navSearch(this.value)"/>
     <?php
       if($_SESSION['user_logged_in'] === true) {
@@ -42,8 +43,7 @@
         echo"<div class='askButtonContainer'>
               <a href='./NewQuestionPage.php'><button class='askButton'>Ask Question</button></a>
             </div>";
-      }
-      if($_SESSION['user_logged_in'] === true) {
+      
         echo"<div class='card'>
               <h3>$_SESSION[userName]</h3>
               <a href='./NewQuestionPage.php'><h2>What is your Question?</h2></a>
@@ -96,6 +96,25 @@
   </main>
   
   <script>
+
+    function hotFilter(){
+      let cardContainer = document.getElementById('cardContainer');
+      cardContainer.innerHTML = "";
+        
+      var xmlhttp = new XMLHttpRequest();
+          
+      xmlhttp.open("POST", "MainPageFunction.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("filter=Hot");
+
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var mesgs = document.getElementById("cardContainer");
+          mesgs.innerHTML = xmlhttp.responseText;
+        }
+      }
+    }
+
     function upvote(para){
       
       var xmlhttp = new XMLHttpRequest();

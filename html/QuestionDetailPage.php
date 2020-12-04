@@ -14,13 +14,11 @@
   <div class="card">
     <div>
       
-      
       <?php
 
       include("config.php");
 
       $para = $_POST['redirectQID'];
-      // print "I am qID: '$para'";
       
       $sql = "SELECT * FROM qTable WHERE qID = '$para' ORDER BY qID DESC";; // Last entry First out :)
       $result = mysqli_query($link, $sql);  // $link from config.php , save the result to $result
@@ -36,20 +34,6 @@
             echo "<button style='float: right;'>Delete</button>
                   <button style='float: right;'>Edit</button>";
           }
-          // echo "<div class='card'>
-          //         <h4>".$row['qSpace']."</h4>
-          //         <div class='leftSpan'>
-          //           <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
-          //           <h3>".$row['qCreatorName']."</h3>
-          //           <h5>".$row['qTime']."</h5>
-          //         </div>
-            
-          //         <div class='rightSpan' id=".$row['qID'].">                    
-          //           <h3>".$row['qTitle']."</h3>
-          //           <p>".$row['qContent']."</p>
-          //         </div>
-            
-          //       </div>";
           
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
@@ -69,6 +53,13 @@
         
       }
       print"</div>";
+
+      if($_SESSION['user_logged_in'] === true) {
+        echo"<div class='answerCard'>
+              <h3>$_SESSION[userName]</h3>
+              <a href='./NewQuestionPage.php'><h2>Post your new answer.</h2></a>
+            </div>";
+      }
       
     ?>
   </div>
