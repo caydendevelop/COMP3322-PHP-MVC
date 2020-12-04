@@ -17,12 +17,9 @@
 
   if(empty($row['qUp']))
   {
-    $test = ["$userID"];
-    $json_qUp = json_encode($test);
+    $json_qUp = json_encode($userID);
     $query=" UPDATE qTable SET qUp = '$json_qUp' WHERE qID = '$qID' ";//向数据库插入表单传来的值的sql
     $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
-    $test2 = json_decode($json_qUp,true);
-    
   } 
   else 
   { 
@@ -30,9 +27,7 @@
     if (($key = array_search($userID, $php_qUp)) !== false) // 已like
     {
       unset($php_qUp[$key]); // delete from array
-      // echo "<p>".count($php_qUp)."</p>";
       $json_qUp = json_encode($php_qUp); // php -> json
-
       $query=" UPDATE qTable SET qUp = '$json_qUp'  WHERE qID = '$qID' ";//向数据库插入表单传来的值
       $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
     } 
@@ -40,18 +35,15 @@
     { 
       array_push($php_qUp, $userID);
       $json_qUp = json_encode($php_qUp);
-
       $query=" UPDATE qTable SET qUp = '$json_qUp'  WHERE qID = '$qID' ";//向数据库插入表单传来的值的sql
       $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
     }
   }
 
-
-
   if (!$result){
     die('Error: ' .mysqli_error($link));
   }else{
-    echo count($php_qUp);
+    echo "Upvote (".count($php_qUp).")";
 }
   // mysqli_free_result($result);
   mysqli_close($link);    

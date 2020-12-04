@@ -16,6 +16,7 @@
     {
       while($row = mysqli_fetch_array($result)) 
         {
+          $qUp = json_decode($row['qUp']);
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
@@ -33,7 +34,7 @@
                   </div>
             
                   <div>
-                    <button>Upvote</button>
+                    <button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>
                     <button>Answer</button>
                   </div>
             
@@ -52,6 +53,7 @@
     {
       while($row = mysqli_fetch_array($result)) 
         {
+          $qUp = json_decode($row['qUp']);
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
@@ -69,7 +71,7 @@
                   </div>
             
                   <div>
-                    <button>Upvote</button>
+                    <button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>
                     <button>Answer</button>
                   </div>
             
@@ -87,6 +89,7 @@
     {
       while($row = mysqli_fetch_array($result)) 
         {
+          $qUp = json_decode($row['qUp']);
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
@@ -104,7 +107,7 @@
                   </div>
             
                   <div>
-                    <button>Upvote</button>
+                    <button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>
                     <button>Answer</button>
                   </div>
             
@@ -122,6 +125,7 @@
     {
       while($row = mysqli_fetch_array($result)) 
         {
+          $qUp = json_decode($row['qUp']);
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
@@ -139,7 +143,7 @@
                   </div>
             
                   <div>
-                    <button>Upvote</button>
+                    <button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>
                     <button>Answer</button>
                   </div>
             
@@ -157,6 +161,7 @@
     {
       while($row = mysqli_fetch_array($result)) 
         {
+          $qUp = json_decode($row['qUp']);
           echo "<div class='card'>
                   <h4>".$row['qSpace']."</h4>
                   <div class='leftSpan'>
@@ -174,7 +179,7 @@
                   </div>
             
                   <div>
-                    <button>Upvote</button>
+                    <button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>
                     <button>Answer</button>
                   </div>
             
