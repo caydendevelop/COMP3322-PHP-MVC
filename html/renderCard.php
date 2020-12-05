@@ -18,7 +18,7 @@ while($row = mysqli_fetch_array($result))
               <input type='hidden' name='redirectQID' value=".$row['qID'].">
               <input type='submit' name='submit' value=".$row['qTitle'].">
             </form>
-            <p>".$row['qContent']."</p>             
+            <p>".$row['qContent']."</p>                       
           </div>
     
           <div>

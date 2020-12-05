@@ -1,4 +1,5 @@
 body {margin:0;}
+a {text-decoration: none;}
 
 .navBar{
   background-color: #ff9800;
@@ -25,15 +26,16 @@ body {margin:0;}
 }
 
 .leftNav{
-  width: 19%;
-  background-color: #ff9800;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-  margin-top:3em;
-  padding-top:5em;
-  padding-left:1em;
   
+  height:100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 50px;
+  left: 0;
+  background-color: #ff9800;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
 .leftNavButton{
@@ -65,9 +67,8 @@ body {margin:0;}
 .mainContainer{
   margin-top:3em;
   margin-bottom:1em;
-  margin-left: 19.8%;
+  margin-left: 250px;
   padding-top:2em;
-  padding-right: 1em;
   padding-left:1em;
   padding-bottom: 3em;
   background-color:#efefef;
@@ -77,22 +78,23 @@ body {margin:0;}
   background-color: white;
   margin:1em;
   padding:1em;
+  
 }
 
 .leftSpan{
+  width: 180px;
+  display: inline-block;
+  margin-right: 100px;
+}
+
+.rightSpan{
+  width: 720px;
   
   display: inline-block;
 }
 
-.rightSpan{
-  margin-left:2em;
-  height: 3em;
-  overflow: hidden;
-  display: inline-block;
-}
-
 .answerCard{
-  background-color: #ff9800;
+  background-color: #ffffff;
   margin:1em 1em 1em 3em;
   padding:1em;
 }
@@ -101,19 +103,132 @@ body {margin:0;}
   display: none;
 }
 
-/* .paragraph{
+
+ /* smaller than 1030px e.g. Tablet */
+ @media only screen and (max-width: 1030px) {
+  .leftColumn{
+    width:100%;
+  }
   
-  overflow:hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  white-space: normal;
+  .navBar{
+    width:100%;
+    font-size:12px;
+    padding: 5px;
+  }
+  .topNavButton{
+
+    padding:7px;
+    color:white;
+    border: none;
+    background-color:#ff9800;
+    font-size: 14px;
+    text-align: center;
+  }
+  .navSearch{
+    width:150px;
+    padding:5px;
+    text-align: center;
+  }
+  .navAlignRight{
+    width:250px;
+    text-align: center;
+    margin:0;
+
+  }
+
+  .leftNav{
+    height:auto;
+    background-color: #ff9800;
+    padding-left:2em;
+    padding-right:1em;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+  }
+  
+  .leftNavButton{
+    display: inline-block;
+    margin:5px;
+    padding:1em;
+    color:white;
+    border: none;
+    background-color:#ff9800;
+    font-size: 12px;
+  }
+
+  .mainContainer{
+    margin-top:3em;
+    margin-bottom:1em;
+    margin-left: 0px;
+    padding-top:2em;
+    padding-left:1em;
+    padding-bottom: 3em;
+    background-color:#efefef;
+  }
 }
 
-input[name="toggle"]:checked {
-  & + p {
-    -webkit-line-clamp: unset;
+/* smaller than 500px e.g. Tablet */
+@media only screen and (max-width: 500px) {
+  .leftColumn{
+    width:100%;
   }
- } */
+  
+  .navBar{
+    width:100%;
+    font-size:12px;
+    padding: 5px;
+  }
+  .topNavButton{
+
+    padding:7px;
+    color:white;
+    border: none;
+    background-color:#ff9800;
+    font-size: 14px;
+    text-align: center;
+  }
+  .navSearch{
+    width:100%;
+    padding:5px;
+    text-align: center;
+  }
+  .navAlignRight{
+    width:100%;
+    text-align: center;
+    margin:0;
+    
+  }
+
+  .leftNav{
+    height:auto;
+    background-color: #ff9800;
+    margin-top: 60px;
+    padding-left:2em;
+    padding-right:1em;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    z-index: 0;
+  }
+  
+  .leftNavButton{
+    display: inline-block;
+    margin:5px;
+    padding:1em;
+    color:white;
+    border: none;
+    background-color:#ff9800;
+    font-size: 12px;
+  }
+
+  .mainContainer{
+    margin-top:6em;
+    margin-bottom:1em;
+    margin-left: 0px;
+    padding-top:2em;
+    padding-left:1em;
+    padding-bottom: 3em;
+    background-color:#efefef;
+  }
+}

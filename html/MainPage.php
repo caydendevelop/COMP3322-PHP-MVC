@@ -13,16 +13,17 @@
   <nav class="navBar">
     <a href='./MainPage.php'><button class="topNavButton">Ques</button></a>
     <a href='./MainPage.php'><button class="topNavButton">Home</button></a>
-    <!-- <input class="topNavButton" type="submit" name="submitHot" id="buttonHot" value="Hot" onclick="hotFilter()"/> -->
-    <button class="topNavButton" onclick="hot()">Hot1</button>
+   
+    <button class="topNavButton" onclick="hot()">Hot</button>
     <input type="text" class="navSearch" name="submitSearch" id="navSearch" onkeyup="navSearch(this.value)"/>
     <?php
       if($_SESSION['user_logged_in'] === true) {
         echo "<a href='./LogoutFunction.php'> <button class='topNavButton navAlignRight'>Log out</button></a>";
-        //echo'<input type="submit" name="submit" class="topNavButton navAlignRight" id="LogoutButton" value="Log Out" action="./LogoutFunction.php"/>';
       }else{
-        echo "<a href='./RegisterPage.php'><button class='topNavButton navAlignRight'>Register</button></a>
-              <a href='./LoginPage.php'><button class='topNavButton navAlignRight'>Log in</button></a>";
+        echo "<span class='navAlignRight'>
+                <a href='./RegisterPage.php'><button class='topNavButton'>Register</button></a>
+                <a href='./LoginPage.php'><button class='topNavButton'>Log in</button></a>
+              </span>";
       }
     ?>
 
