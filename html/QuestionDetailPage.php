@@ -26,7 +26,9 @@
       //Display the Questions from qTable
       if(mysqli_num_rows($result) > 0)
       {
+        
         $row = mysqli_fetch_array($result);
+        $qTime = $row['qTime'];
         $qUp = json_decode($row['qUp']);
         echo "<button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>";
         if($_SESSION['userID'] == $row['qCreatorID']){
@@ -52,6 +54,25 @@
       
       }
       print"</div>";
+
+      $sql2 = "SELECT * FROM ansTable WHERE ansQID = '$qID' ORDER BY ansID DESC";; // Last entry First out :)
+      $result2 = mysqli_query($link, $sql2);  // $link from config.php , save the result to $result
+      //Display the Questions from qTable
+      if(mysqli_num_rows($result2) > 0)
+      {
+        while($row2 = mysqli_fetch_array($result2)) 
+        {
+          echo"<div class='answerCard'>
+                <span>".$row2['ansUserName']."</span>
+                <span>posted on ".$row2['ansTime']."</span>
+                <br/><br/>
+                <div id='ansDiv' class='ansDiv'>
+                  ".$row2['ansContent']."
+                </div>
+              </div>";
+        }
+      }
+
 
       if($_SESSION['user_logged_in'] === true) {
         echo"<div class='answerCard'>
@@ -95,8 +116,6 @@
       getansContent.value = '';
     }
 
-
-
     function upvote(para){
       
       var xmlhttp = new XMLHttpRequest();
@@ -110,6 +129,10 @@
           upBtn.innerHTML = xmlhttp.responseText;
         }
       }
+    }
+
+    function postAnswer(){
+
     }
   </script>
 </body>

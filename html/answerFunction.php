@@ -11,15 +11,16 @@ include("config.php");
   $ansContent = $_POST['ansContent'];
   $ansUID = $_SESSION['userID'];
   $ansUserName = $_SESSION['userName'];
+  $ansTime = date("Y-m-d",time());
   
-  $query="INSERT INTO ansTable (ansID, ansQID, ansContent, ansUID, ansUserName) VALUES ('$ansID', '$ansQID', '$ansContent', '$ansUID', '$ansUserName')";//向数据库插入表单传来的值的sql
+  $query="INSERT INTO ansTable (ansID, ansQID, ansContent, ansUID, ansUserName, ansTime) VALUES ('$ansID', '$ansQID', '$ansContent', '$ansUID', '$ansUserName', '$ansTime')";//向数据库插入表单传来的值的sql
   $result = mysqli_query($link, $query) or die ('Failed to query '.mysqli_error($link));
   
   if (!$result){
       die('Error: ' . mysqli_error($link));
   }else{
       echo "Success!";
-      echo '<meta http-equiv=REFRESH CONTENT=1;url=QuestionDetailPage.php>';
+      echo '<meta http-equiv=REFRESH CONTENT=1;url=MainPage.php>';
   }
 
   $json_ansID = json_encode($ansID); // php -> json
