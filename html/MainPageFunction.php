@@ -121,7 +121,7 @@
             
                   <div>
                     <button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>
-                    <button id='answerBtn+".$row['qID']."' name='".$row['qID']."'>Answer (".count($qAnswer).")</button>
+                    <button id='answerBtn+".$row['qID']."' name='".$row['qID']."' >Answer (".count($qAnswer).")</button>
                   </div>
             
                 </div>";

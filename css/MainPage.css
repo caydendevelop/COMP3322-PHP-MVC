@@ -88,3 +88,13 @@ a { text-decoration: none; }
   margin-left:2em;
   display: inline-block;
 }
+
+.answerCard{
+  background-color: #ff9800;
+  margin:1em 1em 1em 3em;
+  padding:1em;
+}
+
+.noShow{
+  display: none;
+}
