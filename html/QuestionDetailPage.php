@@ -11,8 +11,6 @@
 <body>
   <a href='./MainPage.php'><button class="backButton">back</button></a>
 
-  <div class="card">
-    
       <?php
 
       include("config.php");
@@ -21,7 +19,7 @@
       
       $sql = "SELECT * FROM qTable WHERE qID = '$qID' ORDER BY qID DESC";; // Last entry First out :)
       $result = mysqli_query($link, $sql);  // $link from config.php , save the result to $result
-
+      print "<div class='card'>";
       //Display the Questions from qTable
       if(mysqli_num_rows($result) > 0)
       {
@@ -29,9 +27,10 @@
         $row = mysqli_fetch_array($result);
         $qTime = $row['qTime'];
         $qUp = json_decode($row['qUp']);
-        echo "<button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>";
+        echo "<button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)'>Upvote (".count($qUp).")</button>";
         if($_SESSION['userID'] == $row['qCreatorID']){
           echo "<span style='float:right'>
+                  <button onclick='editQuestion(this)' name='".$row['qID']."'>Edit</button>
                   <form action='./Delete.php' method='POST'>
                     <input type='hidden' name='ansQID' value=".$row['qID'].">
                     <input type='submit' name='delButton' value='Delete' />
@@ -39,8 +38,8 @@
                 </span>";
         }
         
-        echo "<div class='card'>
-                <h4>".$row['qSpace']."</h4>
+        echo "<div id='".$qID."' class='card'>
+                <h4 id='space_".$qID."'>".$row['qSpace']."</h4>
                 <div class='leftSpan'>
                   <span style='display:none'>qCreatorID: ".$row['qCreatorID']."</span>
                   <h3>".$row['qCreatorName']."</h3>
@@ -48,8 +47,8 @@
                 </div>
           
                 <div class='rightSpan' id=".$qID.">                    
-                  <h3>".$row['qTitle']."</h3>
-                  <p>".$row['qContent']."</p>
+                  <h3 id='title_".$qID."'>".$row['qTitle']."</h3>
+                  <p id='content_".$qID."'>".$row['qContent']."</p>
                 </div>
           
               </div>";
@@ -93,8 +92,9 @@
             </div>";
       }
       
+    print"</div>";
     ?>
-  </div>
+  
 
     
 
@@ -130,8 +130,60 @@
       }
     }
 
-    function postAnswer(){
+    function editQuestion(para){
+      let qID = para.name;
+      let questionCard = document.getElementById(qID);
+      let questionTitle = document.getElementById('title_'+qID).innerHTML;
+      let questionSpace = document.getElementById('space_'+qID).innerHTML;
+      let questionContent = document.getElementById('content_'+qID).innerHTML;
 
+      questionCard.innerHTML = "";
+      let bodyContent = "";
+      bodyContent += `<form action="./editQuestion.php" method="POST">                                  
+                        <p>Title</p>
+                        <input type="text" size="35" value=`+questionTitle+` name="qTitle" required/>
+                      `;
+      
+      if(questionSpace == 'Algorithm'){
+        bodyContent += `<p>Space</p>
+                                      <input type="radio" name="qSpace" value="Algorithm" required checked>Algorithm
+                                      <input type="radio" name="qSpace" value="Machine Learning">Machine Learning
+                                      <input type="radio" name="qSpace" value="System">System
+                                      <input type="radio" name="qSpace" value="Javascript">Javascript`
+      } 
+      else if(questionSpace == 'Machine Learning')
+      {
+        bodyContent += `<p>Space</p>
+                                      <input type="radio" name="qSpace" value="Algorithm" required >Algorithm
+                                      <input type="radio" name="qSpace" value="Machine Learning" checked>Machine Learning
+                                      <input type="radio" name="qSpace" value="System">System
+                                      <input type="radio" name="qSpace" value="Javascript">Javascript`
+      } 
+      else if(questionSpace == 'System')
+      {
+        bodyContent += `<p>Space</p>
+                                      <input type="radio" name="qSpace" value="Algorithm" required >Algorithm
+                                      <input type="radio" name="qSpace" value="Machine Learning">Machine Learning
+                                      <input type="radio" name="qSpace" value="System" checked>System
+                                      <input type="radio" name="qSpace" value="Javascript">Javascript`
+      } 
+      else if(questionSpace == 'Javascript')
+      {
+        bodyContent += `<p>Space</p>
+                                      <input type="radio" name="qSpace" value="Algorithm" required >Algorithm
+                                      <input type="radio" name="qSpace" value="Machine Learning">Machine Learning
+                                      <input type="radio" name="qSpace" value="System">System
+                                      <input type="radio" name="qSpace" value="Javascript" checked>Javascript`
+      };
+      bodyContent +=`<p>Content</p>
+                                  <textarea name="qContent" style="width:35em; height:8em;" required>`+questionContent+`</textarea>
+                                  <br/>
+                                  <br/>
+                                  <input type='hidden' name='qID' value=`+qID+`>
+                                  <input type="submit" name="button" value="Submit" />
+                              </form>
+    `;
+    questionCard.innerHTML += bodyContent;
     }
   </script>
 </body>
