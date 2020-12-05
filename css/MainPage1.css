@@ -1,6 +1,28 @@
 body {margin:0;}
 a {text-decoration: none;}
 
+p{
+  font-size:12px;
+}
+
+.leftSpan h5{
+  color:#9f9f9f;
+  font-size:12px;
+}
+.cardTime{
+  color:#9f9f9f;
+  font-size:12px;
+}
+
+.cardTitle{
+  background-color: #ffffff;
+  border: none;
+  color: #ff9800;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
 .navBar{
   background-color: #ff9800;
   padding-left:2em;
@@ -94,8 +116,8 @@ a {text-decoration: none;}
 }
 
 .answerCard{
-  background-color: #ffffff;
-  margin:1em 1em 1em 3em;
+  background-color: #f2f2f2;
+  margin:1em 1em 1em 2em;
   padding:1em;
 }
 
@@ -168,7 +190,7 @@ a {text-decoration: none;}
   }
 }
 
-/* smaller than 500px e.g. Tablet */
+/* smaller than 500px e.g. phone */
 @media only screen and (max-width: 500px) {
   .leftColumn{
     width:100%;
@@ -231,4 +253,18 @@ a {text-decoration: none;}
     padding-bottom: 3em;
     background-color:#efefef;
   }
+}
+
+/* smaller than 500px e.g. phone */
+@media only screen and (max-width: 480px) {
+  .mainContainer{
+    margin-top:10em;
+    margin-bottom:1em;
+    margin-left: 0px;
+    padding-top:2em;
+    padding-left:1em;
+    padding-bottom: 3em;
+    background-color:#efefef;
+  }
+
 }

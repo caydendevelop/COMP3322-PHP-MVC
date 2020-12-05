@@ -16,9 +16,9 @@ while($row = mysqli_fetch_array($result))
           <div class='rightSpan'>       
             <form action='QuestionDetailPage.php' method='POST'>  
               <input type='hidden' name='redirectQID' value=".$row['qID'].">
-              <input type='submit' name='submit' value=".$row['qTitle'].">
+              <input class='cardTitle' type='submit' name='submit' value=".$row['qTitle'].">
             </form>
-            <p>".$row['qContent']."</p>                       
+            <p class='paragraph'>".$row['qContent']."</p>                       
           </div>
     
           <div>
@@ -37,7 +37,7 @@ while($row = mysqli_fetch_array($result))
     {
       echo"<div class='answerCard' >
             <span>".$row2['ansUserName']."</span>
-            <span>posted on ".$row2['ansTime']."</span>
+            <span class='cardTime'>posted on ".$row2['ansTime']."</span>
             <br/><br/>
             <div class='ansDiv'>
               ".$row2['ansContent']."
