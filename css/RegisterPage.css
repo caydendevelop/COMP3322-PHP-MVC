@@ -16,8 +16,12 @@ body{
   padding-bottom: 2em;
 }
 
+h4 {
+  margin-bottom: 4px;
+  padding-bottom: 0px;
+}
 
-.left{
+/* .left{
   display: inline-block;
   
   text-align: end;
@@ -31,4 +35,27 @@ body{
 div input{
   display: block;
   margin: 1.7em;
+} */
+
+
+/* smaller than 500px e.g. phone */
+@media only screen and (max-width: 500px) {
+
+  
+  /* .left{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .right{
+    display: flex;
+    flex-direction: column;
+    
+  }
+  div input{
+    display: block;
+    margin: 1.7em;
+  }
+  
+  } */
 }

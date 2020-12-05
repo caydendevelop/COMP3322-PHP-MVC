@@ -5,6 +5,9 @@ p{
   font-size:12px;
 }
 
+.leftColumn{
+  display:inline-block;
+}
 .leftSpan h5{
   color:#9f9f9f;
   font-size:12px;
@@ -129,7 +132,7 @@ p{
  /* smaller than 1030px e.g. Tablet */
  @media only screen and (max-width: 1030px) {
   .leftColumn{
-    width:100%;
+    display:inline-block;
   }
   
   .navBar{

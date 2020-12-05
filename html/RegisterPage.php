@@ -12,20 +12,19 @@
       <div class="left">
         <!-- <h4>UID</h4> -->
         <h4>Name</h4>
+        <input type="text" size="35" name="userName" required/>
         <h4>Email</h4>
+        <input type="email" size="35" name="userEmail" required/>
         <h4>Password</h4>
+        <input type="password" size="35" name="userPassword" id="password_1" required/>
         <h4>Password Confirmation </h4>
-        <br />
+        <input type="password" size="35" name="userPassword_2" id="password_2" required/>  
+        <br/><br/>
+        <input type="submit" name="submit" id="button" value="signup" />
+        <br/>
+      
       </div>
 
-      <div class="right">
-        <!-- <input type="text" size="35" name="userID" required/> -->
-        <input type="text" size="35" name="userName" required/>
-        <input type="email" size="35" name="userEmail" required/>
-        <input type="password" size="35" name="userPassword" id="password_1" required/>
-        <input type="password" size="35" name="userPassword_2" id="password_2" required/>  
-        <input type="submit" name="submit" id="button" value="signup" />
-      </div>
       <br/>
     </form>
   </div>

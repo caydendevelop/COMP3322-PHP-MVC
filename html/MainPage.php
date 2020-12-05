@@ -11,10 +11,11 @@
 </head>
 <body>
   <nav class="navBar">
-    <a href='./MainPage.php'><button class="topNavButton">Ques</button></a>
-    <a href='./MainPage.php'><button class="topNavButton">Home</button></a>
-   
-    <button class="topNavButton" onclick="hot()">Hot</button>
+    <div class="leftColumn">
+      <a href='./MainPage.php'><button class="topNavButton">Ques</button></a>
+      <a href='./MainPage.php'><button class="topNavButton">Home</button></a>
+      <button class="topNavButton" onclick="hot()">Hot</button>
+    </div>
     <input type="text" class="navSearch" name="submitSearch" id="navSearch" onkeyup="navSearch(this.value)"/>
     <?php
       if($_SESSION['user_logged_in'] === true) {

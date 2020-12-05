@@ -14,3 +14,48 @@ body{
   background-color: aliceblue;
   padding-bottom: 2em;
 }
+
+.left{
+  display: inline-block;
+  text-align: end;
+}
+
+.right{
+  display: inline-block;
+  
+}
+div input{
+  display: block;
+  margin: 1.7em;
+}
+
+
+/* smaller than 500px e.g. phone */
+@media only screen and (max-width: 500px) {
+
+.LoginPageContainer_2{
+  margin: 5em auto auto auto;
+  width: 90%;
+  border: 1px solid;
+  text-align: center;
+  background-color: aliceblue;
+  padding-bottom: 2em;
+}
+
+.left{
+  display: inline-block;
+  text-align: end;
+  width:100px;
+}
+
+.right{
+  display: inline-block;
+  width: 260px;
+  
+}
+div input{
+  display: block;
+  margin: 1.7em;
+}
+
+}
