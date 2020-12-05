@@ -96,7 +96,7 @@
           //Display the Questions from qTable
           if(mysqli_num_rows($result2) > 0)
           {
-            echo"<div class='ansContainer noShow' id='ans_".$qID."'>";
+            echo"<div class='ansContainer noShow' id='ans_".$qID."' stat='off'>";
 
             while($row2 = mysqli_fetch_array($result2)) 
             {
@@ -158,28 +158,38 @@
   </main>
   
   <script>
-    let ansContainerChecker = 0;
+    let ansContainerChecker = 0; // No any ans is expanded
 
     function showAnswer(para){
       let qID = para.parentNode.parentNode.id;
       let answerContainer = document.getElementById('ans_'+qID);
 
-      if (ansContainerChecker == 0){
-        let qID = para.parentNode.parentNode.id;
-        let answerContainer = document.getElementById('ans_'+qID);
+      if (ansContainerChecker == 0){ // if no any ans is expanded
         answerContainer.classList.remove('noShow');
-        ansContainerChecker = 1;
+        answerContainer.setAttribute('stat', 'on');
+        ansContainerChecker = 1; // Ans is expanded
       }
-      else {
-        let globalRange = document.getElementsByClassName('ansContainer');
-        for(var i = 0; i < globalRange.length; i++)
-        {
-          globalRange[i].classList.remove('noShow');
-          globalRange[i].classList.add('noShow');
-        }
+      else 
+      { // if Ans is expanded
 
-        // globalRange.classList.add('noShow');
-        answerContainer.classList.remove('noShow');
+        if (answerContainer.getAttribute('stat') == 'on'){
+          answerContainer.classList.add('noShow');
+          answerContainer.setAttribute('stat', 'off');
+          ansContainerChecker = 0;
+        } 
+        
+        else 
+        {
+          let globalRange = document.getElementsByClassName('ansContainer');
+          for(var i = 0; i < globalRange.length; i++) // change all ans to be non expanded
+          {
+            globalRange[i].classList.remove('noShow');
+            globalRange[i].classList.add('noShow');
+            globalRange[i].setAttribute('stat', 'off');
+          }
+          answerContainer.classList.remove('noShow');
+          answerContainer.setAttribute('stat', 'on');
+        } 
       }
     }
 
