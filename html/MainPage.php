@@ -158,11 +158,29 @@
   </main>
   
   <script>
+    let ansContainerChecker = 0;
 
     function showAnswer(para){
       let qID = para.parentNode.parentNode.id;
       let answerContainer = document.getElementById('ans_'+qID);
-      answerContainer.classList.remove('noShow');
+
+      if (ansContainerChecker == 0){
+        let qID = para.parentNode.parentNode.id;
+        let answerContainer = document.getElementById('ans_'+qID);
+        answerContainer.classList.remove('noShow');
+        ansContainerChecker = 1;
+      }
+      else {
+        let globalRange = document.getElementsByClassName('ansContainer');
+        for(var i = 0; i < globalRange.length; i++)
+        {
+          globalRange[i].classList.remove('noShow');
+          globalRange[i].classList.add('noShow');
+        }
+
+        // globalRange.classList.add('noShow');
+        answerContainer.classList.remove('noShow');
+      }
     }
 
     function showInput(para){
