@@ -31,8 +31,12 @@
         $qUp = json_decode($row['qUp']);
         echo "<button id='upBtn+".$row['qID']."' name='".$row['qID']."' onclick='upvote(this)' '>Upvote (".count($qUp).")</button>";
         if($_SESSION['userID'] == $row['qCreatorID']){
-          echo "<button style='float: right;'>Delete</button>
-                <button style='float: right;'>Edit</button>";
+          echo "<span style='float:right'>
+                  <form action='./Delete.php' method='POST'>
+                    <input type='hidden' name='ansQID' value=".$row['qID'].">
+                    <input type='submit' name='delButton' value='Delete' />
+                  </form>
+                </span>";
         }
         
         echo "<div class='card'>

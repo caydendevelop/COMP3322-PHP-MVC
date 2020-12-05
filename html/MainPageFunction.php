@@ -21,8 +21,6 @@
       }
   }
 
-
-
   if($_POST['filter'] =='Algorithm') {
     //搜尋資料庫資料
     $sql = "SELECT * FROM qTable WHERE qSpace = 'Algorithm' ORDER BY qID DESC"; // Last entry First out :)

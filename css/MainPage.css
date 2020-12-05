@@ -90,7 +90,7 @@ a { text-decoration: none; }
 }
 
 .answerCard{
-  background-color: #ff9800;
+  background-color: #ffffff;
   margin:1em 1em 1em 3em;
   padding:1em;
 }
@@ -98,3 +98,16 @@ a { text-decoration: none; }
 .noShow{
   display: none;
 }
+
+.paragraph{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+input[name="toggle"]:checked {
+  & + p {
+    -webkit-line-clamp: unset;
+  }
+ }
