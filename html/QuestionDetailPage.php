@@ -13,7 +13,6 @@
 
   <div class="card">
     
-      
       <?php
 
       include("config.php");
@@ -66,7 +65,7 @@
                 <span>".$row2['ansUserName']."</span>
                 <span>posted on ".$row2['ansTime']."</span>
                 <br/><br/>
-                <div id='ansDiv' class='ansDiv'>
+                <div class='ansDiv'>
                   ".$row2['ansContent']."
                 </div>
               </div>";
@@ -93,12 +92,8 @@
     ?>
   </div>
 
-    <!-- <h5>Javascript</h5>
-    <h3 style="display: inline-block;">userName</h3>
-    <h5 style="display: inline-block;">time</h5>
-    <h3>questionTitle</h3>
-    <p>sahfjasdhfjdlkafhdlkajfhdljkahfdlka;f kjsdhfjk dskljkljfdskf dksf ds dk dshkjf hsdaklf</p> -->
-  </div>
+    
+
 
   <script>
     let getAnsDiv = document.getElementById('ansDiv');
