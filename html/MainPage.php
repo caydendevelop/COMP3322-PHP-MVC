@@ -125,6 +125,28 @@
                   </div>";
             }
             print "</div>";
+          } 
+          
+          else 
+          {
+            echo"<div class='ansContainer noShow' id='ans_".$qID."'>";
+
+            if($_SESSION['user_logged_in'] === true) {
+              echo"<div class='answerCard'>
+                    <h3>$_SESSION[userName]</h3>
+                    <button onclick='showInput(this)' name='".$qID."'><h2>Post your new answer.</h2></button>
+                    <div id='ansDiv_".$qID."' class='ansDiv noShow' >
+                      <form action='./answerFunction.php' method='POST'>
+                        <input type='hidden' name='ansQID' value=".$row['qID'].">
+                        <textarea name='ansContent' id='ansContent_".$qID."' style='width:35em; height:8em;' required></textarea>
+                        <br/><br/>
+                        <input type='submit' name='ansButton' value='Submit' />
+                      </form>
+                      <button onclick='hideInput(this)' name='".$qID."'>Cancel</button>
+                    </div>
+                  </div>";
+            }
+            print "</div>";
           }
 
           print "</div>";
